@@ -1,8 +1,14 @@
 ﻿<?php
-	$mysqli=new mysqli("localhost","root","","contaBeta"); //servidor, usuario de base de datos, contraseña del usuario, nombre de base de datos
-	
-	if(mysqli_connect_errno()){
-		echo 'Conexion Fallida : ', mysqli_connect_error();
-		exit();
+/* Conectar a una base de datos de MySQL invocando al controlador */
+	$dsn = 'mysql:dbname=contaBeta;host=127.0.0.1';
+	$usuario = 'root';
+	$contraseña = '';
+
+	try {
+		$gbd = new PDO($dsn, $usuario, $contraseña);
+	} catch (PDOException $e) {
+		echo 'Falló la conexión: ' . $e->getMessage();
 	}
+
 ?>
+

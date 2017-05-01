@@ -16,8 +16,8 @@ $fechaIni = $_GET['fechaIni'];
 			  where c.codigocuenta = d.codigo_Cuenta and a.idAsiento = d.id_Asiento
       		  and fecha BETWEEN '$fechaIni' and '$fechaFin' and c.id_Empresa= $idEmp";
 
-	$resultado=$mysqli->query($query);
-	$resultado2=$mysqli->query($query2);
+	$resultado=$gbd->query($query);
+	$resultado2=$gbd->query($query2);
 	$deudorTotal = 0;
 	$acreedorTotal = 0;
 ?>
@@ -122,7 +122,7 @@ tbody tr:nth-child(odd) {
 					<td><h3>Acreedor</td>
 				</tr>
 				<tbody>
-					<?php while($row=$resultado->fetch_assoc()){ ?>
+					<?php while($row=$resultado->fetch()){ ?>
 						<tr>
 							<td><?php echo $row['codigocuenta'];?>
 							</td>
@@ -153,7 +153,7 @@ tbody tr:nth-child(odd) {
 							</td>
 						</tr>
 					<?php } ?>
-					<?php while($row2=$resultado2->fetch_assoc()){ ?>
+					<?php while($row2=$resultado2->fetch()){ ?>
 						<tr>
 							<td>
 							</td>

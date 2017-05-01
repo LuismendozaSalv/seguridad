@@ -23,9 +23,9 @@ $query3="Select c.codigocuenta, c.descripcion, SUM(d.debe) as Debito, SUM(d.habe
       		and fecha BETWEEN '$fechaIni' and '$fechaFin' and c.id_Empresa= $idEmp
 			group by c.codigocuenta";
 
-	$resultado=$mysqli->query($query);
-	$resultado2=$mysqli->query($query2);
-$resultado3=$mysqli->query($query3);
+	$resultado=$gbd->query($query);
+	$resultado2=$gbd->query($query2);
+$resultado3=$gbd->query($query3);
 	$TotalCuentaActivo	 = 0;
 $TotalCuentaPasivo= 0;
 $TotalCuentaCapital = 0;
@@ -133,7 +133,7 @@ tbody tr:nth-child(odd) {
 					<td><h3>Total</td>
 				</tr>
 				<tbody>
-					<?php while($row=$resultado->fetch_assoc()){ ?>
+					<?php while($row=$resultado->fetch()){ ?>
 						<tr>
 							<td><?php echo $row['codigocuenta'];?>
 							</td>
@@ -175,7 +175,7 @@ tbody tr:nth-child(odd) {
 						</td>
 					</tr>
 
-					<?php while($row=$resultado2->fetch_assoc()){ ?>
+					<?php while($row=$resultado2->fetch()){ ?>
 						<tr>
 							<td><?php echo $row['codigocuenta'];?>
 							</td>
@@ -205,7 +205,7 @@ tbody tr:nth-child(odd) {
 						</td>
 					</tr>
 
-					<?php while($row=$resultado3->fetch_assoc()){ ?>
+					<?php while($row=$resultado3->fetch()){ ?>
 						<tr>
 							<td><?php echo $row['codigocuenta'];?>
 							</td>

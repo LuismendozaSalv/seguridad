@@ -20,8 +20,8 @@ $query2="Select c.codigocuenta, c.descripcion, SUM(d.debe) as Debito, SUM(d.habe
 			group by c.codigocuenta";
 
 
-	$resultado=$mysqli->query($query);
-	$resultado2=$mysqli->query($query2);
+	$resultado=$gbd->query($query);
+	$resultado2=$gbd->query($query2);
 
 	$TotalCuentaIngreso	 = 0;
 	$TotalCuentaEgreso= 0;
@@ -130,7 +130,7 @@ tbody tr:nth-child(odd) {
 					<td><h3>Total</td>
 				</tr>
 				<tbody>
-					<?php while($row=$resultado->fetch_assoc()){ ?>
+					<?php while($row=$resultado->fetch()){ ?>
 						<tr>
 							<td><?php echo $row['codigocuenta'];?>
 							</td>
@@ -161,7 +161,7 @@ tbody tr:nth-child(odd) {
 
 
 
-					<?php while($row=$resultado2->fetch_assoc()){ ?>
+					<?php while($row=$resultado2->fetch()){ ?>
 						<tr>
 							<td><?php echo $row['codigocuenta'];?>
 							</td>

@@ -20,11 +20,11 @@ include_once('../other/conexion.php');
 			fecha BETWEEN '$fechaIn' and '$fechaFin' and c.id_Empresa= $idEmp and c.codigoCuenta = $codCta
 			order by idAsiento";
 
-  			$resultado=$mysqli->query($query);
-			$resultado2=$mysqli->query($query2);
+  			$resultado=$gbd->query($query);
+			$resultado2=$gbd->query($query2);
 			$query3 = "Select descripcion from cuenta where codigoCuenta = $codCta";
-			$resultado3 = $mysqli->query($query3);
-			$s = $resultado3->fetch_assoc();
+			$resultado3 = $gbd->query($query3);
+			$s = $resultado3->fetch();
 			$cta = $s['descripcion'];
 $this->title = 'Libro Mayor Cuenta : '. $cta	;
 $periodo = 'Periodo: ' . $fechaIn .' - ' .$fechaFin;
@@ -133,7 +133,7 @@ tbody tr:nth-child(odd) {
 				</tr>
 			</thead>
 				<tbody>
-					<?php while($row = $resultado->fetch_assoc()){ ?>
+					<?php while($row = $resultado->fetch()){ ?>
 						<tr>
 							<td>
 								<?php echo $row['fecha'];?>
@@ -164,7 +164,7 @@ tbody tr:nth-child(odd) {
 				</thead>
 
 				<tbody>
-				<?php while($row2=$resultado2->fetch_assoc()){ ?>
+				<?php while($row2=$resultado2->fetch()){ ?>
 					<tr>
 
 						<td><?php echo 'Total'?>

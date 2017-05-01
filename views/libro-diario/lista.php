@@ -20,7 +20,7 @@ $fechaIn = $_GET['fechaIni'];
 			order by d.codigo_Cuenta";
 	
 
-	$resultado=$mysqli->query($query);
+	$resultado=$gbd->query($query);
 
 ?>
 
@@ -130,7 +130,7 @@ tbody tr:nth-child(odd) {
 
 				</tr>
 				<tbody>
-					<?php while($row=$resultado->fetch_assoc()){ ?>
+					<?php while($row=$resultado->fetch()){ ?>
 						<tr>
 							<td><?php echo $row['codigo_Cuenta'];?>
 							</td>
