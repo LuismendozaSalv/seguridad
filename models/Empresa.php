@@ -53,6 +53,7 @@ class Empresa extends \yii\db\ActiveRecord
             [['nit'], 'number'],
             [['telefono'], 'integer'],
             [['razonSocial', 'direccion', 'ciudad', 'pais'], 'string', 'max' => 50],
+            [['nit'], 'unique'],
         ];
     }
 

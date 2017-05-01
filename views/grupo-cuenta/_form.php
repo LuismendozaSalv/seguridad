@@ -14,16 +14,16 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
     <?php $idemp=0;
-    $iduser = Yii::$app->user->getId();
-    $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
-    foreach ($emp as $emp2) {
-        $idemp=$emp2->id_Empresa ;
-    }
-    $codCta = 0;
-    $codCuenta = Grupocuenta::find()->all();
-    foreach ($codCuenta as $emp2) {
-        $codCta=$emp2->codGrupo ;
-    }
+        $iduser = Yii::$app->user->getId();
+        $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
+        foreach ($emp as $emp2) {
+            $idemp=$emp2->id_Empresa ;
+        }
+        $codCta = 0;
+        $codCuenta = Grupocuenta::find()->all();
+        foreach ($codCuenta as $emp2) {
+            $codCta=$emp2->codGrupo ;
+        }
     
     ?>
 

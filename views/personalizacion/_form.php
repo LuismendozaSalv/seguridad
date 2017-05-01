@@ -30,10 +30,11 @@ use dosamigos\tinymce\TinyMce;
         ['prompt'=>'Seleccione el tamaño de la letra']    // options
     ); ?>
    <?php $iduser = Yii::$app->user->getId();
-    $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
-    foreach ($emp as $emp2) {
-    $idemp=$emp2->id_Empresa ;
-    }
+        $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
+           foreach ($emp as $emp2) {
+               $idemp=$emp2->id_Empresa ;
+               $idemp = filter_var(strip_tags(isset($idemp),FILTER_SANITIZE_NUMBER_INT));
+            }
     ?>
     <?=$form->field($model, 'id_Empresa')->hiddenInput(['value'=> $idemp])->label(false); ?>
     <?=$form->field($model, 'id_Usuario')->hiddenInput(['value'=> $iduser])->label(false); ?>

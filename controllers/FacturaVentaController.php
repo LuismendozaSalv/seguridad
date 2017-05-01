@@ -90,11 +90,25 @@ class FacturaVentaController extends Controller
      */
     public function actionCreate()
     {
+        if (!isset($_GET['id'])){
+            return $this->redirect(["site/denied"]);
+        }
         $otra = $this->obtenerOtra();
         if($otra>0) {
             $model = new Facturaventa();
+            $array=Yii::$app->request->bodyParams;
+            if (!empty($array)){
+                if ($array['trampita'] != ""){
+                    return $this->render('create', [
+                        'model' => $model,
+                    ]);
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                }
+            }
+            if ($model->load(Yii::$app->request->post()) ) {
+                $codResp = $this->desencriptar($model->codigoResp);
+                $model->codigoResp = $codResp;
+                $model->save();
                 return $this->redirect(['view', 'id' => $model->codigoResp]);
             } else {
                 return $this->render('create', [
@@ -107,6 +121,10 @@ class FacturaVentaController extends Controller
         }
     }
 
+
+    public function desencriptar($cript){
+        return $cript / 0X621333;
+    }
     /**
      * Updates an existing FacturaVenta model.
      * If update is successful, the browser will be redirected to the 'view' page.

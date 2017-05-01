@@ -30,27 +30,6 @@ class CuentaController extends Controller
         ];
     }
 
-    public function obtenerRepetido($cod){
-        $idEmp = $this->obtenerIdempresa();
-        $codigo = Cuenta::find()->where(['id_Empresa'=>$idEmp])->all();
-        foreach ($codigo as $emp2) {
-            if($emp2->codigoCuenta == $cod){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function obtenerIdempresa(){
-        $idemp=0;
-        $iduser = Yii::$app->user->getId();
-        $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
-        foreach ($emp as $emp2) {
-            $idemp=$emp2->id_Empresa ;
-        }
-        return $idemp;
-    }
-
     public function obtenerOtra(){
         $idGrupo=0;
         $iduser = Yii::$app->user->getId();
@@ -127,21 +106,26 @@ class CuentaController extends Controller
     public function actionCreate()
     {
         $otra = $this->obtenerOtra();
-
+        
         if($otra>0) {
+            
             $model = new Cuenta();
             $model->load(Yii::$app->request->post());
+            $array=Yii::$app->request->bodyParams;
+            if (!empty($array)){
+                if ($array['trampita'] != ""){
+                    return $this->render('create', [
+                        'model' => $model,
+                    ]);
+
+                }
+            }
 
             $cod=$model->codigoCuenta;
             $desc = $model->descripcion;
             $nivel=$model->id_Nivel;
             $codPadre = $model->codPadre;
-            $seRepite = $this->obtenerRepetido($cod);
-            if($seRepite){
-                return $this->render('create', [
-                    'model' => $model,
-                ]);
-            }
+
             if ($codPadre == "-"){
                 $codPadre = null;
 
@@ -174,7 +158,7 @@ class CuentaController extends Controller
     }
     public function actionLists($id)
     {
-        //echo "<pre>";print_r($id);die;
+        
         $countAccount = \app\models\Cuenta::find()
             ->where(['id_nivel' => $id-1])
             ->count();

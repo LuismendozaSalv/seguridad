@@ -15,7 +15,7 @@ use dosamigos\datepicker\DatePicker;
 
     <?php $codResp = null;
     if (!empty($_GET)) {
-        $codResp = $_GET['id'];
+        $codResp = filter_var(strip_tags(isset($_GET['id']) ? $_GET['id']: 0 ),FILTER_SANITIZE_NUMBER_INT);
     }
     ?>
 
@@ -48,7 +48,7 @@ use dosamigos\datepicker\DatePicker;
     }
     ?>
     <?=$form->field($model, 'id_Empresa')->hiddenInput(['value'=> $idemp])->label(false); ?>
-
+    <input type="text" name="trampita" style="display: none"/>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

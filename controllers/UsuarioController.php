@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Grupousuario;
 use Yii;
 use app\models\Usuario;
 use app\models\UsuarioSearch;
@@ -91,14 +92,41 @@ class UsuarioController extends Controller
     public function actionCreate()
     {
             $model = new Usuario();
+            $array=Yii::$app->request->bodyParams;
+            if (!empty($array)){
+                if ($array['trampita'] != ""){
+                    return $this->render('create', [
+                        'model' => $model,
+                    ]);
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                }
+            }
+            if ($model->load(Yii::$app->request->post())) {
+                $passwd = trim($model->passwd);
+                $model->passwd = strip_tags($passwd);
+                $id_Empresa = trim($model->id_Empresa);
+                $model->id_Empresa = strip_tags($id_Empresa);
+                $direccion = trim($model->direccion);
+                $model->direccion = strip_tags($direccion);
+                $telefono = trim($model->telefono);
+                $model->telefono = strip_tags($telefono);
+                $id_Grupo = trim($model->id_Grupo);
+                $model->id_Grupo = strip_tags($id_Grupo);
+                $idEmpresa = $this->desencriptar($model->id_Empresa);
+                $model->id_Empresa = $idEmpresa;
+                $grupo = Grupousuario::find()->where(['id_Empresa' => $idEmpresa])->all();
+                $model->id_Grupo = $grupo[0]->idGrupo;
+                $model->save();
                 return $this->redirect(['site/login']);
             } else {
                 return $this->render('create', [
                     'model' => $model,
                 ]);
             }
+    }
+
+    public function desencriptar($cript){
+        return $cript / 0X621333;
     }
 
     /**

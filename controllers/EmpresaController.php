@@ -91,11 +91,31 @@ class EmpresaController extends Controller
      */
     public function actionCreate()
     {
+        $model = new Empresa();
+        $array=Yii::$app->request->bodyParams;
+        if (!empty($array)){
+            if ($array['trampita'] != ""){
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
 
-            $model = new Empresa();
+            }
+        }
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
+        if ($model->load(Yii::$app->request->post())) {
+                $nit = trim($model->nit);
+                $model->nit = strip_tags($nit);
+                $razonSocial = trim($model->razonSocial);
+                $model->razonSocial = strip_tags($razonSocial);
+                $direccion = trim($model->direccion);
+                $model->direccion = strip_tags($direccion);
+                $ciudad = trim($model->ciudad);
+                $model->ciudad = strip_tags($ciudad);
+                $pais = trim($model->pais);
+                $model->pais = strip_tags($pais);
+                $telefono = trim($model->telefono);
+                $model->telefono = strip_tags($telefono);
+                $model->save();
                 $default = new Grupousuario();
                 $default->id_Empresa = $model->idEmpresa;
                 $default->descripcion = "Contador";
@@ -116,13 +136,21 @@ class EmpresaController extends Controller
                     $privileg->save();
                     $i++;
                 }
-                return $this->redirect(['usuario/create', 'id' => $model->idEmpresa]);
+
+                $encriptado = $this->encriptar($model->idEmpresa);
+
+                return $this->redirect(['usuario/create', 'id' => $encriptado]);
             } else {
                 return $this->render('create', [
                     'model' => $model,
                 ]);
             }
 
+    }
+
+    public function encriptar($codigo){
+        $id = $codigo * 0X621333;
+        return $id;
     }
 
     /**

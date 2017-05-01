@@ -40,7 +40,7 @@ class Usuario extends \yii\db\ActiveRecord
             [['id_Empresa', 'id_Grupo'], 'integer'],
             [['nombre', 'direccion'], 'string', 'max' => 50],
             [['userName'], 'string', 'max' => 20],
-            [['passwd'], 'string', 'max' => 25],
+            [['passwd'], 'string', 'max' => 25, 'min' => 8],
             [['telefono'], 'string', 'max' => 10],
             [['id_Empresa'], 'exist', 'skipOnError' => true, 'targetClass' => Empresa::className(), 'targetAttribute' => ['id_Empresa' => 'idEmpresa']],
             [['id_Grupo'], 'exist', 'skipOnError' => true, 'targetClass' => Grupousuario::className(), 'targetAttribute' => ['id_Grupo' => 'idGrupo']],

@@ -19,10 +19,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'codigoCuenta')->textInput(['maxlength' => true]) ?>
     <?php $idemp=0;
-    $iduser = Yii::$app->user->getId();
-    $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
-    foreach ($emp as $emp2) {
-        $idemp=$emp2->id_Empresa ;
+        $iduser = Yii::$app->user->getId();
+        $iduser = filter_var(strip_tags($iduser,FILTER_SANITIZE_NUMBER_INT));
+        $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
+        foreach ($emp as $emp2) {
+            $idemp=$emp2->id_Empresa ;
+            $idemp = filter_var(strip_tags($idemp,FILTER_SANITIZE_NUMBER_INT));
     }
     
     ?>
@@ -57,6 +59,7 @@ use yii\widgets\ActiveForm;
 
 
     <?= $form->field($model, 'cod_Grupo')->dropDownList(ArrayHelper::map(Grupocuenta::find()->where(['id_Empresa' => $idemp])->all(),'codGrupo','descripcion')) ?>
+    <input type="text" name="trampita" style="display: none"/>
     <script>
 
     </script>

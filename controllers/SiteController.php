@@ -76,8 +76,6 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-
-
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -110,8 +108,6 @@ class SiteController extends Controller
 
     public function actionDenied()
     {
-
-
         return $this->render('denied');
     }
     /**

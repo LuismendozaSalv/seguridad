@@ -53,7 +53,7 @@ class MonedaController extends Controller
         if($otra>0) {
             $searchModel = new MonedaSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+            
             return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
@@ -92,7 +92,15 @@ class MonedaController extends Controller
         $otra = $this->obtenerOtra();
         if($otra>0) {
             $model = new Moneda();
+            $array=Yii::$app->request->bodyParams;
+            if (!empty($array)){
+                if ($array['trampita'] != ""){
+                    return $this->render('create', [
+                        'model' => $model,
+                    ]);
 
+                }
+            }
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->codMoneda]);
             } else {

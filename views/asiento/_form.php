@@ -33,16 +33,19 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'glosa')->textInput(['maxlength' => true]) ?>
     
     <?php $idemp=0;
-    $iduser = Yii::$app->user->getId();
-    $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
-    foreach ($emp as $emp2) {
-        $idemp=$emp2->id_Empresa ;
-    }
+        $iduser = Yii::$app->user->getId();
+        $iduser = filter_var(strip_tags($iduser,FILTER_SANITIZE_NUMBER_INT));
+        $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
+        foreach ($emp as $emp2) {
+            $idemp=$emp2->id_Empresa ;
+            $idemp = filter_var(strip_tags($idemp,FILTER_SANITIZE_NUMBER_INT));
+        }
     ?>
     <?= $form->field($model, 'cod_Moneda')->dropDownList(ArrayHelper::map(Moneda::find()->where(['id_Empresa' => $idemp])->all(),'codMoneda','tipoMoneda')) ?>
     <?= $form->field($model, 'id_TipoA')->dropDownList(ArrayHelper::map(Tipoasiento::find()->where(['id_Empresa' => $idemp])->all(),'idTipo','descripcion')) ?>
     <?=$form->field($model, 'id_Empresa')->hiddenInput(['value'=> $idemp])->label(false); ?>
     <?=$form->field($model, 'id_Usuario')->hiddenInput(['value'=> $iduser])->label(false); ?>
+    <input type="text" name="trampita" style="display: none"/>
     
     <select id="mySelect"  style="display:none;" >
         <?php
@@ -95,7 +98,7 @@ use dosamigos\datepicker\DatePicker;
                 var celda2 = fila.insertCell(1);
                 var celda3 = fila.insertCell(2);
 
-                <!-- Hola -->
+
                 var campo1 = createSelect('mySelect');
                 campo1.name="codCuenta[]";
 

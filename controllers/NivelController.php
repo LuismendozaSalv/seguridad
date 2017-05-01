@@ -91,7 +91,15 @@ class NivelController extends Controller
         $otra = $this->obtenerOtra();
         if($otra>0) {
             $model = new Nivel();
+            $array=Yii::$app->request->bodyParams;
+            if (!empty($array)){
+                if ($array['trampita'] != ""){
+                    return $this->render('create', [
+                        'model' => $model,
+                    ]);
 
+                }
+            }
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->idNivel]);
             } else {

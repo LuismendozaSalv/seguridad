@@ -18,14 +18,17 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'simbolo')->textInput(['maxlength' => true]) ?>
 
     <?php $idemp=0;
-    $iduser = Yii::$app->user->getId();
-    $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
-    foreach ($emp as $emp2) {
-        $idemp=$emp2->id_Empresa ;
-    }
+        $iduser = Yii::$app->user->getId();
+        $iduser = filter_var(strip_tags($iduser,FILTER_SANITIZE_NUMBER_INT));
+        $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
+        foreach ($emp as $emp2) {
+            $idemp=$emp2->id_Empresa ;
+            $idemp = filter_var(strip_tags($idemp,FILTER_SANITIZE_NUMBER_INT));
+        }
     ?>
     <?=$form->field($model, 'id_Empresa')->hiddenInput(['value'=> $idemp])->label(false); ?>
 
+    <input type="text" name="trampita" style="display: none"/>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

@@ -148,8 +148,9 @@ public function actionCreate()
                             }
                             $i+=1;
                         }
-
-                    return $this->redirect(['respaldo/create', 'id' => $model->idAsiento]);
+                    $idAsiento =  $this->encriptar($model->idAsiento);
+                        
+                    return $this->redirect(['respaldo/create', 'id' => $idAsiento]);
                     }
                     else {
                     return $this->render('create', [
@@ -166,7 +167,10 @@ public function actionCreate()
             }
 
     }
-
+    public function encriptar($codigo){
+        $id = $codigo * 0X621333;
+        return $id;
+    }
     /**
      * Updates an existing Asiento model.
      * If update is successful, the browser will be redirected to the 'view' page.

@@ -24,8 +24,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'telefono')->textInput() ?>
 
+     <input type="text" name="trampita" style="display: none"/>
+
     <div class="form-group">
-        <a href = "http://localhost:8080/contaBeta/web/index.php?r=usuario%2Fcreate"> </a>
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Registrar') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 

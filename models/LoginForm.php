@@ -49,6 +49,7 @@ class LoginForm extends Model
 
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Incorrect username or password.');
+                sleep(5);
             }
         }
     }
@@ -57,6 +58,7 @@ class LoginForm extends Model
      * Logs in a user using the provided username and password.
      * @return boolean whether the user is logged in successfully
      */
+    
     public function login()
     {
         if ($this->validate()) {

@@ -97,7 +97,7 @@ class RespaldoController extends Controller
 
                 $tipoA = $model->tipoResp ;
                 $tipo = null;
-                $idAs = $_GET['id'];
+                $idAs = filter_var(strip_tags(isset($_GET['id']) ? $_GET['id']: 0 ),FILTER_SANITIZE_NUMBER_INT);
                 if ($tipoA == 1) {
                     $tipo = "cheque/create";
                 } else if ($tipoA == 2) {
@@ -105,10 +105,11 @@ class RespaldoController extends Controller
                 } else {
                     $tipo = "factura-venta/create";
                 }
-                $model->id_Asiento = $idAs;
-                
+                $model->id_Asiento = $this->desencriptar($idAs);
+
                 $model->save();
-                return $this->redirect([$tipo, 'id' => $model->codigoRespaldo]);
+                $codRespaldo = $this->encriptar($model->codigoRespaldo);
+                return $this->redirect([$tipo, 'id' => $codRespaldo]);
             } else {
                 return $this->render('create', [
                     'model' => $model,
@@ -118,6 +119,15 @@ class RespaldoController extends Controller
         else{
             return $this->redirect(["site/denied"]);
         }
+    }
+
+    public function desencriptar($cript){
+        return $cript / 0X621333;
+    }
+    
+    public function encriptar($codigo){
+        $id = $codigo * 0X621333;
+        return $id;
     }
 
     /**

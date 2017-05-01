@@ -23,31 +23,32 @@ $connection = \Yii::$app->db;
 
     <?= $form->field($model, 'userName')->textInput(['maxlength' => true]) ?>
 
-    <?php $idemp=0;
-    $iduser = Yii::$app->user->getId();
+    <?php 
+        $idemp=0;
+        $iduser = Yii::$app->user->getId();
+    
+        $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
 
-    $emp=Usuario::find()->where(['idUsuario'=>$iduser])->all();
-
-    foreach ($emp as $emp2) {
-          $idemp=$emp2->id_Empresa ;
-    }
-    if($idemp == 0){
-        $idemp = $_GET['id'];
-    }
+        foreach ($emp as $emp2) {
+              $idemp=$emp2->id_Empresa ;
+        }
+        if($idemp == 0){
+            $idemp = filter_var(strip_tags(isset($_GET['id']) ? $_GET['id']: 0 ),FILTER_SANITIZE_NUMBER_INT);
+        }
     ?>
 
 
     <?= $form->field($model, 'passwd')->passwordInput(['maxlength' => true]) ?>
     <?php $idEmp = Yii::$app->user->getId() ?>
-    <?= $form->field($model, 'id_Empresa')->dropDownList(ArrayHelper::map(Empresa::find()->where(['idEmpresa' => $idemp])->all(),'idEmpresa','razonSocial')) ?>
+    <?=$form->field($model, 'id_Empresa')->hiddenInput(['value'=> $idemp])->label(false); ?>
 
     <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'telefono')->textInput(['maxlength' => true]) ?>
-    <a class="btn btn-danger" href="javascript:void(window.open('../grupo-usuario/create'));"
-       rel="nofollow">Nuevo grupo de Usuario</a>
-    <?= $form->field($model, 'id_Grupo')->dropDownList(ArrayHelper::map(Grupousuario::find()->where(['id_Empresa' => $idemp])->all(),'idGrupo','descripcion')) ?>
 
+    <?=$form->field($model, 'id_Grupo')->hiddenInput(['value'=> $idEmp])->label(false); ?>
+
+    <input type="text" name="trampita" style="display: none"/>
    <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Registrar') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
@@ -55,4 +56,3 @@ $connection = \Yii::$app->db;
     <?php ActiveForm::end(); ?>
 
 </div>
-
