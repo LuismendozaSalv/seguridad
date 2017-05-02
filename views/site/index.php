@@ -5,7 +5,7 @@
 $this->title = 'ContaServi';
 ?>
 <div class="site-index">
-
+    <a href="https://seal.beyondsecurity.com/vulnerability-scanner-verification/seguridadsw2.tk"><img src="https://seal.beyondsecurity.com/verification-images/seguridadsw2.tk/vulnerability-scanner-2.gif" alt="Website Security Test" border="0" /></a>
     <div class="jumbotron">
         <h1>Bienvenido</h1>
 
