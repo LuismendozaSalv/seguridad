@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
         }
     ?>
     <?=$form->field($model, 'id_Empresa')->hiddenInput(['value'=> $idemp])->label(false); ?>
-
+    <input type="text" name="trampita" style="display: none"/>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
