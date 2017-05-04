@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\captcha\Captcha;
+
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Empresa */
@@ -24,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'telefono')->textInput() ?>
 
-     <input type="text" name="trampita" style="display: none"/>
+    <input type="text" name="trampita" style="display: none"/>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Registrar') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
