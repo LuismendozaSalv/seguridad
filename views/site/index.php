@@ -41,8 +41,7 @@ $this->title = 'ContaServi';
 
             </div>
             <div class="col-lg-4">
-                <h2>Repositorio</h2>
-                <img src="http://www.codigos-qr.com/qr/php/qr_img.php?d=https%3A%2F%2Fdrive.google.com%2Fdrive%2Ffolders%2F0B--wi0BChHS3TUZMTGR0Umc1RFU&s=6&e=m" alt="Generador de Códigos QR Codes"/>
+               
             </div>
         </div>
 
