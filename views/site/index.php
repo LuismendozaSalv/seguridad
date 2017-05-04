@@ -42,7 +42,7 @@ $this->title = 'ContaServi';
             </div>
             <div class="col-lg-4">
                 <h2>Repositorio</h2>
-                <img src="../web/assets/qr_img.png">
+                <img src="../web/image/qr_img.png">
             </div>
         </div>
 
