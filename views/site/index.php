@@ -25,12 +25,7 @@ $this->title = 'ContaServi';
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>Soporte Tecnico</h2>
-
-                <p></p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Guia del Usuario &raquo;</a></p>
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Contacto &raquo;</a></p>
+                <h2>Seguro</h2>
             </div>
             <div class="col-lg-4">
                 <h2>Facil de usar</h2>

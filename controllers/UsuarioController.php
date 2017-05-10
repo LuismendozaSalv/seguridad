@@ -102,6 +102,9 @@ class UsuarioController extends Controller
                 }
             }
             if ($model->load(Yii::$app->request->post())) {
+                if (($model->id_Empresa % 0X621333) != 0){
+                    return $this->redirect(["site/denied"]);
+                }
                 $passwd = trim($model->passwd);
                 $model->passwd = strip_tags($passwd);
                 $id_Empresa = trim($model->id_Empresa);

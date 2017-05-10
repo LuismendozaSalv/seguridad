@@ -14,17 +14,19 @@ use yii\captcha\Captcha;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nit')->textInput() ?>
+    <?= $form->field($model, 'nit',['inputOptions' => [
+        'autocomplete' => 'off']])->textInput() ?>
 
-    <?= $form->field($model, 'razonSocial')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'razonSocial',['inputOptions' => [
+        'autocomplete' => 'off']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'direccion',['inputOptions' => ['autocomplete' => 'off']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'ciudad')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'ciudad',['inputOptions' => ['autocomplete' => 'off']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pais')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'pais',['inputOptions' => ['autocomplete' => 'off']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'telefono')->textInput() ?>
+    <?= $form->field($model, 'telefono',['inputOptions' => ['autocomplete' => 'off']])->textInput() ?>
 
     <input type="text" name="trampita" style="display: none"/>
 

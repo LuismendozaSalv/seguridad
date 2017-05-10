@@ -19,9 +19,9 @@ $connection = \Yii::$app->db;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nombre',['inputOptions' => ['autocomplete' => 'off']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'userName')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'userName',['inputOptions' => ['autocomplete' => 'off']])->textInput(['maxlength' => true]) ?>
 
     <?php 
         $idemp=0;
@@ -38,13 +38,13 @@ $connection = \Yii::$app->db;
     ?>
 
 
-    <?= $form->field($model, 'passwd')->passwordInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'passwd',['inputOptions' => ['autocomplete' => 'off']])->passwordInput(['maxlength' => true]) ?>
     <?php $idEmp = Yii::$app->user->getId() ?>
     <?=$form->field($model, 'id_Empresa')->hiddenInput(['value'=> $idemp])->label(false); ?>
 
-    <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'direccion',['inputOptions' => ['autocomplete' => 'off']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'telefono')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'telefono',['inputOptions' => ['autocomplete' => 'off']])->textInput(['maxlength' => true]) ?>
 
     <?=$form->field($model, 'id_Grupo')->hiddenInput(['value'=> $idEmp])->label(false); ?>
 

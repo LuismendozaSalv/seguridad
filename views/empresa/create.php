@@ -7,7 +7,6 @@ use yii\helpers\Html;
 /* @var $model app\models\Empresa */
 
 $this->title = Yii::t('app', 'Registrar Empresa');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Empresas'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="empresa-create">

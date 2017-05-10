@@ -17,14 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'idEmpresa') ?>
 
-    <?= $form->field($model, 'nit') ?>
-
-    <?= $form->field($model, 'razonSocial') ?>
-
-    <?= $form->field($model, 'direccion') ?>
-
-    <?= $form->field($model, 'ciudad') ?>
-
+   
     <?php // echo $form->field($model, 'pais') ?>
 
     <?php // echo $form->field($model, 'telefono') ?>

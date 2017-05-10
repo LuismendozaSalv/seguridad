@@ -42,6 +42,10 @@ class Usuario extends \yii\db\ActiveRecord
             [['userName'], 'string', 'max' => 20],
             [['passwd'], 'string', 'max' => 25, 'min' => 8],
             [['telefono'], 'string', 'max' => 10],
+            ['nombre', 'match', 'pattern' => "/^[a-z']+$/i", 'message' => 'Sólo se aceptan letras'],
+            ['userName', 'match', 'pattern' => "/^[0-9a-z]+$/i", 'message' => 'Sólo se aceptan letras y números'],
+            ['telefono', 'match', 'pattern' => "/^[0-9]+$/i", 'message' => 'Sólo se aceptan numeros'],
+            ['passwd', 'match', 'pattern' => "/^[0-9a-z]+$/i", 'message' => 'Sólo se aceptan numeros y letras'],
             [['id_Empresa'], 'exist', 'skipOnError' => true, 'targetClass' => Empresa::className(), 'targetAttribute' => ['id_Empresa' => 'idEmpresa']],
             [['id_Grupo'], 'exist', 'skipOnError' => true, 'targetClass' => Grupousuario::className(), 'targetAttribute' => ['id_Grupo' => 'idGrupo']],
         ];
