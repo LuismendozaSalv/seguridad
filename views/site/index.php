@@ -36,6 +36,52 @@ $this->title = 'ContaServi';
 
             </div>
             <div class="col-lg-4">
+                <script language="JavaScript" type="text/javascript">
+                    //<![CDATA[
+                        function inhabilitar(){
+                            alert ("UserSitio No Puede Usar el Click Derecho Copyright 2011.")
+                            return false
+                        }
+
+                    document.oncontextmenu=inhabilitar
+                    //]]>
+                </script>
+                <script type='text/javascript'>
+                    var isCtrl = false;
+                    document.onkeyup=function(e)
+                    {
+                        if(e.which == 17)
+                            isCtrl=false;
+                    }
+                    document.onkeydown=function(e)
+                    {
+                        if(e.which == 17)
+                            isCtrl=true;
+                        if((e.which == 85) || (e.which == 67) && (isCtrl == true))
+                        {
+                            return false;
+                        }
+                    }
+                    var isNS = (navigator.appName == "Netscape") ? 1 : 0;
+                    if(navigator.appName == "Netscape") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);
+                    function mischandler(){
+                        return false;
+                    }
+                    function mousehandler(e){
+                        var myevent = (isNS) ? e : event;
+                        var eventbutton = (isNS) ? myevent.which : myevent.button;
+                        if((eventbutton==2)||(eventbutton==3)) return false;
+                    }
+                    document.oncontextmenu = mischandler;
+                    document.onmousedown = mousehandler;
+                    document.onmouseup = mousehandler;
+                </script>
+                Fin de la conversación
+                Escribe un mensaje...
+
+                Elegir archivos
+                Elegir archivos
+
                 <h2>Repositorio</h2>
                 <img src="../web/image/qr_img.png">
             </div>
