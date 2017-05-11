@@ -51,17 +51,8 @@ class EmpresaController extends Controller
      */
     public function actionIndex()
     {
-        $otra = $this->obtenerOtra();
-        if($otra>0) {
-            $searchModel = new EmpresaSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-            return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
-        }
-        else{
+        if (Yii::$app->user->isGuest){
             return $this->redirect(["site/denied"]);
         }
     }
@@ -161,6 +152,12 @@ class EmpresaController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(($id % 0X621333) != 0 || is_string($id)){
+            return $this->redirect(["site/denied"]);
+        }
+        if (Yii::$app->user->isGuest){
+            return $this->redirect(["site/denied"]);
+        }
         $otra = $this->obtenerOtra();
         if($otra>0) {
             $model = $this->findModel($id);
@@ -186,10 +183,9 @@ class EmpresaController extends Controller
      */
     public function actionDelete($id)
     {
-        
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        if (Yii::$app->user->isGuest){
+            return $this->redirect(["site/denied"]);
+        }
     }
 
     /**

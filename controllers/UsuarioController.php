@@ -51,6 +51,9 @@ class UsuarioController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest){
+            return $this->redirect(["site/denied"]);
+        }
         $otra = $this->obtenerOtra();
         if($otra>0) {
             $searchModel = new UsuarioSearch();
@@ -73,6 +76,9 @@ class UsuarioController extends Controller
      */
     public function actionView($id)
     {
+        if (Yii::$app->user->isGuest){
+            return $this->redirect(["site/denied"]);
+        }
         $otra = $this->obtenerOtra();
         if($otra>0) {
             return $this->render('view', [
@@ -91,6 +97,9 @@ class UsuarioController extends Controller
      */
     public function actionCreate()
     {
+            if (!isset($_GET['is'])){
+                return $this->redirect(["site/denied"]);
+            }
             $model = new Usuario();
             $array=Yii::$app->request->bodyParams;
             if (!empty($array)){
@@ -140,6 +149,12 @@ class UsuarioController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->isGuest){
+            return $this->redirect(["site/denied"]);
+        }
+        if(($id % 0X621333) != 0 || is_string($id)){
+            return $this->redirect(["site/denied"]);
+        }
         $otra = $this->obtenerOtra();
         if($otra>0) {
             $model = $this->findModel($id);
@@ -165,9 +180,9 @@ class UsuarioController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        if (Yii::$app->user->isGuest){
+            return $this->redirect(["site/denied"]);
+        }
     }
 
     /**
