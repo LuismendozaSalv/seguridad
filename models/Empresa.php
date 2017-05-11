@@ -53,10 +53,10 @@ class Empresa extends \yii\db\ActiveRecord
             [['nit'], 'number'],
             [['telefono'], 'integer'],
             [['razonSocial', 'direccion', 'ciudad', 'pais'], 'string', 'max' => 50],
-            ['razonSocial', 'match', 'pattern' => "/^[0-9a-z]+$/i", 'message' => 'Sólo se aceptan letras y números'],
-            ['direccion', 'match', 'pattern' => "/^[0-9a-z#]+$/i", 'message' => 'Sólo se aceptan letras y números'],
-            ['ciudad', 'match', 'pattern' => "/^[a-z]+$/i", 'message' => 'Sólo se aceptan letras'],
-            ['pais', 'match', 'pattern' => "/^[a-z]+$/i", 'message' => 'Sólo se aceptan letras'],
+            ['razonSocial', 'match', 'pattern' => "/^[0-9a-z ]+$/i", 'message' => 'Sólo se aceptan letras y números'],
+            ['direccion', 'match', 'pattern' => "/^[0-9a-z# .]+$/i", 'message' => 'Sólo se aceptan letras y números'],
+            ['ciudad', 'match', 'pattern' => "/^[a-z ]+$/i", 'message' => 'Sólo se aceptan letras'],
+            ['pais', 'match', 'pattern' => "/^[a-z ]+$/i", 'message' => 'Sólo se aceptan letras'],
             [['nit'], 'unique'],
         ];
     }
