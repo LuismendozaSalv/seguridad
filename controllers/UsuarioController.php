@@ -97,9 +97,7 @@ class UsuarioController extends Controller
      */
     public function actionCreate()
     {
-            if (!isset($_GET['is'])){
-                return $this->redirect(["site/denied"]);
-            }
+            
             $model = new Usuario();
             $array=Yii::$app->request->bodyParams;
             if (!empty($array)){

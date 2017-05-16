@@ -15,7 +15,7 @@ use yii\captcha\Captcha;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'nit',['inputOptions' => [
-        'autocomplete' => 'off']])->textInput() ?>
+        'autocomplete' => 'off']])->textInput(['maxlength' => 15]) ?>
 
     <?= $form->field($model, 'razonSocial',['inputOptions' => [
         'autocomplete' => 'off']])->textInput(['maxlength' => true]) ?>
@@ -26,7 +26,7 @@ use yii\captcha\Captcha;
 
     <?= $form->field($model, 'pais',['inputOptions' => ['autocomplete' => 'off']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'telefono',['inputOptions' => ['autocomplete' => 'off']])->textInput() ?>
+    <?= $form->field($model, 'telefono',['inputOptions' => ['autocomplete' => 'off']])->textInput(['maxlength' => 11]) ?>
 
     <input type="text" name="trampita" style="display: none"/>
 
