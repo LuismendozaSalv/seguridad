@@ -50,7 +50,7 @@ class Empresa extends \yii\db\ActiveRecord
     {
         return [
             [['nit', 'razonSocial'], 'required'],
-            [['nit'], 'integer'],
+            [['nit'], 'double'],
             [['telefono'], 'integer'],
             [['razonSocial', 'direccion', 'ciudad', 'pais'], 'string', 'max' => 50],
             ['razonSocial', 'match', 'pattern' => "/^[0-9a-z ]+$/i", 'message' => 'Sólo se aceptan letras y números'],

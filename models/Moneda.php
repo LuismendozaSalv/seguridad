@@ -35,6 +35,8 @@ class Moneda extends \yii\db\ActiveRecord
             [['id_Empresa'], 'integer'],
             [['tipoMoneda'], 'string', 'max' => 20],
             [['simbolo'], 'string', 'max' => 5],
+            ['tipoMoneda', 'match', 'pattern' => "/^[a-z ]+$/i", 'message' => 'Sólo se aceptan letras'],
+            ['simbolo', 'match', 'pattern' => "/^[a-z.$]+$/i", 'message' => 'Sólo se aceptan letras'],
             [['id_Empresa'], 'exist', 'skipOnError' => true, 'targetClass' => Empresa::className(), 'targetAttribute' => ['id_Empresa' => 'idEmpresa']],
         ];
     }

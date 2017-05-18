@@ -58,15 +58,7 @@ class GrupoUsuarioController extends Controller
      */
     public function actionView($id)
     {
-        $otra = $this->obtenerOtra();
-        if($otra>0) {
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-            ]);
-        }
-        else{
-            return $this->redirect(["site/denied"]);
-        }
+        return $this->redirect(["site/denied"]);
     }
 
     /**
@@ -104,7 +96,7 @@ class GrupoUsuarioController extends Controller
                     $privileg->save();
                     $i++;
                 }
-                return $this->redirect(['view', 'id' => $model->idGrupo]);
+                return $this->redirect(["grupo-usuario/index"]);
             } else {
                 return $this->render('create', [
                     'model' => $model,
@@ -140,22 +132,7 @@ class GrupoUsuarioController extends Controller
      */
     public function actionUpdate($id)
     {
-
-        $otra = $this->obtenerOtra();
-        if($otra>0) {
-            $model = $this->findModel($id);
-
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->idGrupo]);
-            } else {
-                return $this->render('update', [
-                    'model' => $model,
-                ]);
-            }
-        }
-        else{
-            return $this->redirect(["site/denied"]);
-        }
+        return $this->redirect(["site/denied"]);
     }
 
     /**
@@ -166,9 +143,7 @@ class GrupoUsuarioController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        return $this->redirect(["site/denied"]);
     }
 
     /**

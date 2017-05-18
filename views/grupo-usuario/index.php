@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+       
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'descripcion',
            // 'id_Empresa',
 
-           // ['class' => 'yii\grid\ActionColumn'],
+           ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

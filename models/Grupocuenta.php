@@ -33,6 +33,7 @@ class Grupocuenta extends \yii\db\ActiveRecord
             [['codGrupo', 'id_Empresa'], 'required'],
             [['codGrupo', 'id_Empresa'], 'integer'],
             [['descripcion'], 'string', 'max' => 50],
+            ['descripcion', 'match', 'pattern' => "/^[a-z ]+$/i", 'message' => 'Sólo se aceptan letras'],
             [['id_Empresa'], 'exist', 'skipOnError' => true, 'targetClass' => Empresa::className(), 'targetAttribute' => ['id_Empresa' => 'idEmpresa']],
         ];
     }

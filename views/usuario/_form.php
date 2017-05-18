@@ -46,7 +46,17 @@ $connection = \Yii::$app->db;
 
     <?= $form->field($model, 'telefono',['inputOptions' => ['autocomplete' => 'off']])->textInput(['maxlength' => true]) ?>
 
-    <?=$form->field($model, 'id_Grupo')->hiddenInput(['value'=> $idEmp])->label(false); ?>
+    <?php
+    if (Yii::$app->user->isGuest){
+        $form->field($model, 'id_Grupo')->hiddenInput(['value'=> $idEmp])->label(false);
+    } else {
+    echo $form->field($model, 'id_Grupo')->dropDownList(ArrayHelper::map(Grupousuario::find()->where(['id_Empresa' => $idemp])->all(),'idGrupo','descripcion'),
+        [
+            'prompt' => 'Seleccionar Grupo de Usuario',
+            'class'=>'btn btn-info dropdown-toggle'
+        ]);
+    }
+    ?>
 
     <input type="text" name="trampita" style="display: none"/>
    <div class="form-group">

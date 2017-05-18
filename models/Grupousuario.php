@@ -36,6 +36,7 @@ class Grupousuario extends \yii\db\ActiveRecord
             [['descripcion', 'id_Empresa'], 'required'],
             [['id_Empresa'], 'integer'],
             [['descripcion'], 'string', 'max' => 50],
+            ['descripcion', 'match', 'pattern' => "/^[a-z ]+$/i", 'message' => 'Sólo se aceptan letras'],
             [['id_Empresa'], 'exist', 'skipOnError' => true, 'targetClass' => Empresa::className(), 'targetAttribute' => ['id_Empresa' => 'idEmpresa']],
             
         ];

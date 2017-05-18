@@ -71,15 +71,7 @@ class MonedaController extends Controller
      */
     public function actionView($id)
     {
-        $otra = $this->obtenerOtra();
-        if($otra>0) {
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-            ]);
-        }
-        else{
-            return $this->redirect(["site/denied"]);
-        }
+        return $this->redirect(["site/denied"]);
     }
 
     /**
@@ -102,7 +94,7 @@ class MonedaController extends Controller
                 }
             }
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->codMoneda]);
+                return $this->redirect(["moneda/index"]);
             } else {
                 return $this->render('create', [
                     'model' => $model,
@@ -122,21 +114,7 @@ class MonedaController extends Controller
      */
     public function actionUpdate($id)
     {
-        $otra = $this->obtenerOtra();
-        if($otra>0) {
-            $model = $this->findModel($id);
-
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->codMoneda]);
-            } else {
-                return $this->render('update', [
-                    'model' => $model,
-                ]);
-            }
-        }
-        else{
-            return $this->redirect(["site/denied"]);
-        }
+        return $this->redirect(["site/denied"]);
     }
 
     /**

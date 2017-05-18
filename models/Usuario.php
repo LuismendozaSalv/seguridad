@@ -42,6 +42,8 @@ class Usuario extends \yii\db\ActiveRecord
             [['userName'], 'string', 'max' => 20],
             [['passwd'], 'string', 'max' => 25, 'min' => 8],
             [['telefono'], 'string', 'max' => 10],
+            [['userName'], 'unique'],
+            
             ['nombre', 'match', 'pattern' => "/^[a-z' ]+$/i", 'message' => 'Sólo se aceptan letras'],
             ['userName', 'match', 'pattern' => "/^[0-9a-z]+$/i", 'message' => 'Sólo se aceptan letras y números'],
             ['telefono', 'match', 'pattern' => "/^[0-9]+$/i", 'message' => 'Sólo se aceptan numeros'],

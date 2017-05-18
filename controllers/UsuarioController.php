@@ -109,8 +109,10 @@ class UsuarioController extends Controller
                 }
             }
             if ($model->load(Yii::$app->request->post())) {
-                if (($model->id_Empresa % 0X621333) != 0){
-                    return $this->redirect(["site/denied"]);
+                if (Yii::$app->user->isGuest){
+                    if (($model->id_Empresa % 0X621333) != 0){
+                        return $this->redirect(["site/denied"]);
+                    }
                 }
                 $passwd = trim($model->passwd);
                 $model->passwd = strip_tags($passwd);
@@ -122,10 +124,12 @@ class UsuarioController extends Controller
                 $model->telefono = strip_tags($telefono);
                 $id_Grupo = trim($model->id_Grupo);
                 $model->id_Grupo = strip_tags($id_Grupo);
-                $idEmpresa = $this->desencriptar($model->id_Empresa);
-                $model->id_Empresa = $idEmpresa;
-                $grupo = Grupousuario::find()->where(['id_Empresa' => $idEmpresa])->all();
-                $model->id_Grupo = $grupo[0]->idGrupo;
+                if (Yii::$app->user->isGuest){
+                    $idEmpresa = $this->desencriptar($model->id_Empresa);
+                    $model->id_Empresa = $idEmpresa;
+                    $grupo = Grupousuario::find()->where(['id_Empresa' => $idEmpresa])->all();
+                    $model->id_Grupo = $grupo[0]->idGrupo;
+                }
                 $model->save();
                 return $this->redirect(['site/login']);
             } else {

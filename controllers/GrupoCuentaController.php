@@ -82,15 +82,7 @@ class GrupoCuentaController extends Controller
      */
     public function actionView($id)
     {
-        $otra = $this->obtenerOtra();
-        if($otra>0) {
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-            ]);
-        }
-        else{
-            return $this->redirect(["site/denied"]);
-        }
+        return $this->redirect(["site/denied"]);
     }
 
     /**
@@ -112,7 +104,7 @@ class GrupoCuentaController extends Controller
             if ($model->load(Yii::$app->request->post()) ) {
              //   $model->codGrupo = $codGrupo+1;
                 $model->save();
-                return $this->redirect(['view', 'id' => $model->codGrupo]);
+                return $this->redirect(["grupo-cuenta/index"]);
             } else {
                 return $this->render('create', [
                     'model' => $model,
@@ -132,21 +124,7 @@ class GrupoCuentaController extends Controller
      */
     public function actionUpdate($id)
     {
-        $otra = $this->obtenerOtra();
-        if($otra>0) {
-            $model = $this->findModel($id);
-
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->codGrupo]);
-            } else {
-                return $this->render('update', [
-                    'model' => $model,
-                ]);
-            }
-        }
-        else{
-            return $this->redirect(["site/denied"]);
-        }
+        return $this->redirect(["site/denied"]);
     }
 
     /**
@@ -157,9 +135,7 @@ class GrupoCuentaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        return $this->redirect(["site/denied"]);
     }
 
     /**

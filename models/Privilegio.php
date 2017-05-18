@@ -35,6 +35,7 @@ class Privilegio extends \yii\db\ActiveRecord
             [['idPrivilegio', 'nombre'], 'required'],
             [['idPrivilegio', 'idPadre'], 'integer'],
             [['nombre'], 'string', 'max' => 50],
+            ['nombre', 'match', 'pattern' => "/^[a-z ]+$/i", 'message' => 'Sólo se aceptan letras'],
             [['idPadre'], 'exist', 'skipOnError' => true, 'targetClass' => Privilegio::className(), 'targetAttribute' => ['idPadre' => 'idPrivilegio']],
         ];
     }

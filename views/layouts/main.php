@@ -92,18 +92,7 @@ AppAsset::register($this);
             'encodeLabels'=>false,
             'options' => ['class' => 'navbar-nav navbar-left'],
             'items' => [
-                ['label' => ''],['label' => ''],['label' => ''],['label' => ''],['label' => ''],['label' => ''],
-                [
-                    'label' => 'Asiento',
-                    'items' => [
-                        ['label' => '<span class="glyphicon glyphicon-list-alt"></span>'.Html::encode('  Gestión de Asiento'), 'url' => ['/asiento/index']],
-                        '<li class="divider"></li>',
-                        '<li class="dropdown-header">Opciones de Asiento</li>',
-                        '<li class="divider"></li>',
-                        ['label' =>  '<span class="glyphicon glyphicon-tags"></span>'.Html::encode('  Tipo de Asiento'), 'url' => ['/tipo-asiento/index']],
-                    ],
-                ],
-
+                
                 [
                     'label' => 'Cuentas',
                     'items' => [
@@ -117,16 +106,7 @@ AppAsset::register($this);
                         ['label' => '<span class="glyphicon glyphicon-usd"></span>'.Html::encode('   Moneda'), 'url' => ['/moneda/index']],
                     ],
                 ],
-                ['label' => '<span class="glyphicon glyphicon-tasks"></span>'.Html::encode(' Reportes'),'url' => ['/site/reporte']],
-                [
-                    'label' => 'Libros IVA',
-                    'items' => [
-                        ['label' =>'<span class="glyphicon glyphicon-list-alt"></span>'.Html::encode('  Libro de Compras') , 'url' => ['/factura-compra']],
-                        ['label' =>  '<span class="glyphicon glyphicon-list-alt"></span>'.Html::encode('   Libro de Ventas'), 'url' => ['/factura-venta']],
-                        ['label' =>  '<span class="glyphicon glyphicon-list-alt"></span>'.Html::encode('   Listado de Cheques'), 'url' => ['/cheque']],
 
-                    ],
-                ],
 
 
             ],

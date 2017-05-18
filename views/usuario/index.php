@@ -26,11 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'idUsuario',
             'nombre',
             'userName',
-            'passwd',
-            'id_Empresa',
-            //'direccion',
-            //'telefono',
-            //'id_Grupo',
+
         ];
     echo ExportMenu::widget([
         'dataProvider' => $dataProvider,
@@ -40,20 +36,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'idUsuario',
             'nombre',
             'userName',
-            'passwd',
-           // 'id_Empresa',
-            // 'direccion',
-            // 'telefono',
-            // 'id_Grupo',
+
 
             ['class' => 'yii\grid\ActionColumn'],
+
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

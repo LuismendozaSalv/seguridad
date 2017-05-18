@@ -16,7 +16,7 @@ $this->title = 'ContaServi';
                 <a class="btn btn-lg btn-success" href="empresa/create">Comencemos</a>
             </p>
             <?php else : ?>
-           <p> <img width="500px" height="250px" style="border-color: #00aa00" src="http://www.utel.edu.mx/blog/wp-content/uploads/2015/04/shutterstock_188334569.jpg"></p>
+           
         <?php endif; ?>
 
     </div>
